@@ -826,7 +826,7 @@ ${formState.message}`
 
 function ContactDock({ onOpenContact }) {
   return (
-    <div className="fixed bottom-3 left-1/2 z-40 w-[calc(100%-1rem)] max-w-xl -translate-x-1/2 rounded-[1.2rem] border border-white/10 bg-[#0b1120]/80 p-1.5 shadow-2xl backdrop-blur-2xl sm:bottom-5 sm:w-auto sm:min-w-[420px] sm:rounded-[1.6rem] sm:p-2">
+    <div className="fixed bottom-2 left-1/2 z-40 w-[calc(100%-0.5rem)] max-w-xl -translate-x-1/2 rounded-[1.2rem] border border-white/10 bg-[#0b1120]/80 p-1.5 shadow-2xl backdrop-blur-2xl sm:bottom-5 sm:w-auto sm:min-w-[420px] sm:rounded-[1.6rem] sm:p-2">
       <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
         <a href="https://t.me/samedbrll" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-1.5 rounded-[1rem] bg-white px-3 py-2.5 text-[12px] font-medium text-black transition hover:scale-[1.02] sm:gap-2 sm:rounded-2xl sm:px-4 sm:py-3 sm:text-sm">
           <ChatIcon className="h-4 w-4" />
@@ -963,7 +963,7 @@ export default function AnimeJsPortfolioSite() {
           </div>
         </div>
 
-        <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-6 md:px-10">
+        <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 md:px-10">
           <div className="animate-[fadeUp_700ms_ease-out_forwards] text-sm font-medium tracking-[0.25em] text-white/70">
             SAMED BIRELLI
           </div>
@@ -981,11 +981,11 @@ export default function AnimeJsPortfolioSite() {
           </nav>
         </header>
 
-        <section className="relative z-10 mx-auto grid min-h-[92vh] max-w-7xl items-center gap-14 px-6 pb-20 pt-10 md:grid-cols-[1.15fr_0.85fr] md:px-10 md:pb-28 md:pt-16">
+        <section className="relative z-10 mx-auto grid min-h-[88vh] max-w-7xl items-center gap-10 px-4 pb-16 pt-8 sm:px-6 md:min-h-[92vh] md:gap-14 md:grid-cols-[1.15fr_0.85fr] md:px-10 md:pb-28 md:pt-16">
           <div>
             <div className="inline-flex animate-[fadeUp_800ms_ease-out_forwards] items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-200 opacity-0 backdrop-blur-xl">
               <SparklesIcon className="h-4 w-4" />
-              
+              Premium Portfolio Experience
             </div>
 
             <div className="mt-7 space-y-2 text-4xl font-semibold leading-[0.95] tracking-tight sm:text-5xl md:text-7xl">
@@ -1111,7 +1111,7 @@ export default function AnimeJsPortfolioSite() {
         </section>
       </div>
 
-      <main className="relative z-10 mx-auto max-w-7xl space-y-12 px-4 py-8 sm:px-6 md:space-y-24 md:px-10 md:py-14">
+      <main className="relative z-10 mx-auto max-w-7xl space-y-12 px-3 py-8 sm:px-6 md:space-y-24 md:px-10 md:py-14">
         <section className="space-y-5 sm:space-y-6">
           <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
             <div>
@@ -1145,7 +1145,7 @@ export default function AnimeJsPortfolioSite() {
             </div>
           </div>
 
-          <div className="rounded-[1.8rem] border border-white/10 bg-gradient-to-br from-cyan-400/10 via-white/[0.03] to-fuchsia-400/10 p-5 backdrop-blur-2xl sm:p-6 md:rounded-[2rem] md:p-10">
+          <div className="rounded-[1.5rem] border border-white/10 bg-gradient-to-br from-cyan-400/10 via-white/[0.03] to-fuchsia-400/10 p-4 backdrop-blur-2xl sm:p-6 md:rounded-[2rem] md:p-10">
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs uppercase tracking-[0.24em] text-emerald-200">
               <span className="h-2 w-2 rounded-full bg-emerald-300 animate-[pulseGlow_2.4s_ease-in-out_infinite]" />
               Open for selected projects
@@ -1178,7 +1178,7 @@ export default function AnimeJsPortfolioSite() {
             text="I do not just write code. I build complete systems that look polished, solve real bottlenecks and make a product feel stronger from both the technical and user side."
           />
 
-          <div className="rounded-[1.8rem] border border-white/10 bg-white/5 p-5 text-white/70 backdrop-blur-2xl animate-[fadeUp_800ms_ease-out_forwards] opacity-0 sm:p-7 md:rounded-[2rem]">
+          <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-4 text-white/70 backdrop-blur-2xl animate-[fadeUp_800ms_ease-out_forwards] opacity-0 sm:p-7 md:rounded-[2rem]">
             <p className="text-lg leading-8">
               My main focus is building Telegram bots, mini apps, automation systems, mobile applications and client panels. I care about architecture, user flow, visual quality and speed at the same time.
             </p>
