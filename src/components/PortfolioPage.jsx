@@ -245,29 +245,6 @@ function CodeIcon({ className }) {
   );
 }
 
-function BotIcon({ className }) {
-  return (
-    <IconBase className={className}>
-      <rect x="5" y="8" width="14" height="10" rx="3" />
-      <path d="M12 4v4" />
-      <path d="M9 12h.01" />
-      <path d="M15 12h.01" />
-      <path d="M8 18v2" />
-      <path d="M16 18v2" />
-    </IconBase>
-  );
-}
-
-function BlocksIcon({ className }) {
-  return (
-    <IconBase className={className}>
-      <rect x="3" y="3" width="8" height="8" rx="2" />
-      <rect x="13" y="3" width="8" height="8" rx="2" />
-      <rect x="8" y="13" width="8" height="8" rx="2" />
-    </IconBase>
-  );
-}
-
 function DatabaseIcon({ className }) {
   return (
     <IconBase className={className}>
@@ -423,7 +400,11 @@ function MarqueeRow({ items, reverse = false }) {
   const repeatedItems = [...items, ...items];
   return (
     <div className="relative overflow-hidden">
-      <div className={`flex w-max gap-3 ${reverse ? "animate-[marqueeReverse_34s_linear_infinite]" : "animate-[marquee_34s_linear_infinite]"}`}>
+      <div
+        className={`flex w-max gap-3 ${
+          reverse ? "animate-[marqueeReverse_34s_linear_infinite]" : "animate-[marquee_34s_linear_infinite]"
+        }`}
+      >
         {repeatedItems.map((item, index) => (
           <div
             key={`${item}-${index}`}
@@ -499,8 +480,12 @@ function PlaygroundVisual({ mode }) {
           <span className="rounded-full border border-fuchsia-300/20 bg-fuchsia-300/10 px-2 py-1">Admin</span>
         </div>
         <div className="mt-3 grid gap-2">
-          <div className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-[11px] text-white/60">Start → input → confirm</div>
-          <div className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-[11px] text-white/60">Approval → sync → result</div>
+          <div className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-[11px] text-white/60">
+            Start → input → confirm
+          </div>
+          <div className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-[11px] text-white/60">
+            Approval → sync → result
+          </div>
         </div>
       </div>
     );
@@ -708,7 +693,12 @@ function ContactModal({ isOpen, onClose }) {
               Fill this quickly and send it directly to my email, or reach me on Telegram for a faster conversation.
             </p>
           </div>
-          <button type="button" onClick={onClose} className="rounded-2xl border border-white/10 bg-white/5 p-2 text-white/70 transition hover:bg-white/10">
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded-2xl border border-white/10 bg-white/5 p-2 text-white/70 transition hover:bg-white/10"
+            aria-label="Close contact form"
+          >
             <XIcon className="h-4 w-4" />
           </button>
         </div>
@@ -739,11 +729,19 @@ function ContactModal({ isOpen, onClose }) {
         </div>
 
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <a href={mailHref} className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-medium text-black transition hover:scale-[1.02]">
+          <a
+            href={mailHref}
+            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-medium text-black transition hover:scale-[1.02]"
+          >
             <MailIcon className="h-4 w-4" />
             Send via Email
           </a>
-          <a href="https://t.me/samedbrll" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/85 transition hover:bg-white/10">
+          <a
+            href="https://t.me/samedbrll"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/85 transition hover:bg-white/10"
+          >
             <ChatIcon className="h-4 w-4" />
             Continue on Telegram
           </a>
@@ -755,17 +753,29 @@ function ContactModal({ isOpen, onClose }) {
 
 function ContactDock({ onOpenContact }) {
   return (
-    <div className="fixed bottom-2 left-1/2 z-40 w-[calc(100%-0.5rem)] max-w-xl -translate-x-1/2 rounded-[1.2rem] border border-white/10 bg-[#0b1120]/80 p-1.5 shadow-2xl backdrop-blur-2xl sm:bottom-5 sm:w-auto sm:min-w-[420px] sm:rounded-[1.6rem] sm:p-2">
+    <div className="fixed bottom-2 left-1/2 z-40 w-[calc(100%-0.5rem)] max-w-xl -translate-x-1/2 rounded-[1.2rem] border border-white/10 bg-[#0b1120]/80 p-1.5 shadow-2xl backdrop-blur-2xl sm:bottom-5 sm:w-auto sm:min-w-[420px] sm:rounded-[1.6rem] sm:p-2 md:min-w-[380px]">
       <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
-        <a href="https://t.me/samedbrll" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-1.5 rounded-[1rem] bg-white px-3 py-2.5 text-[12px] font-medium text-black transition hover:scale-[1.02] sm:gap-2 sm:rounded-2xl sm:px-4 sm:py-3 sm:text-sm">
+        <a
+          href="https://t.me/samedbrll"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center justify-center gap-1.5 rounded-[1rem] bg-white px-3 py-2.5 text-[12px] font-medium text-black transition hover:scale-[1.02] sm:gap-2 sm:rounded-2xl sm:px-4 sm:py-3 sm:text-sm"
+        >
           <ChatIcon className="h-4 w-4" />
           Telegram
         </a>
-        <button type="button" onClick={onOpenContact} className="inline-flex items-center justify-center gap-1.5 rounded-[1rem] border border-white/10 bg-white/5 px-3 py-2.5 text-[12px] font-medium text-white/80 transition hover:bg-white/10 sm:gap-2 sm:rounded-2xl sm:px-4 sm:py-3 sm:text-sm">
+        <button
+          type="button"
+          onClick={onOpenContact}
+          className="inline-flex items-center justify-center gap-1.5 rounded-[1rem] border border-white/10 bg-white/5 px-3 py-2.5 text-[12px] font-medium text-white/80 transition hover:bg-white/10 sm:gap-2 sm:rounded-2xl sm:px-4 sm:py-3 sm:text-sm"
+        >
           <MailIcon className="h-4 w-4" />
           Email
         </button>
-        <a href="#projects" className="inline-flex items-center justify-center gap-1.5 rounded-[1rem] border border-white/10 bg-white/5 px-3 py-2.5 text-[12px] font-medium text-white/80 transition hover:bg-white/10 sm:gap-2 sm:rounded-2xl sm:px-4 sm:py-3 sm:text-sm">
+        <a
+          href="#projects"
+          className="inline-flex items-center justify-center gap-1.5 rounded-[1rem] border border-white/10 bg-white/5 px-3 py-2.5 text-[12px] font-medium text-white/80 transition hover:bg-white/10 sm:gap-2 sm:rounded-2xl sm:px-4 sm:py-3 sm:text-sm"
+        >
           <ArrowRightIcon className="h-4 w-4" />
           Projects
         </a>
@@ -809,7 +819,6 @@ export default function AnimeJsPortfolioSite() {
     <div ref={rootRef} className="min-h-screen bg-[#050816] pb-28 text-white sm:pb-32">
       <style>{`
         @keyframes fadeUp { from { opacity: 0; transform: translateY(24px);} to { opacity: 1; transform: translateY(0);} }
-        @keyframes floatSoft { 0%,100%{transform:translateY(0px);} 50%{transform:translateY(-8px);} }
         @keyframes pulseGlow { 0%,100%{opacity:0.55;} 50%{opacity:0.9;} }
         @keyframes marquee { from { transform: translateX(0);} to { transform: translateX(-50%);} }
         @keyframes marqueeReverse { from { transform: translateX(-50%);} to { transform: translateX(0);} }
@@ -820,14 +829,16 @@ export default function AnimeJsPortfolioSite() {
 
       <div
         className="pointer-events-none fixed inset-0 z-0 animate-[mouseGlow_4s_ease-in-out_infinite]"
-        style={{ background: `radial-gradient(420px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(56, 189, 248, 0.12), transparent 38%)` }}
+        style={{
+          background: `radial-gradient(420px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(56, 189, 248, 0.12), transparent 38%)`,
+        }}
       />
 
       <div className="relative overflow-hidden">
         <BackgroundGlow />
 
         <div className="absolute inset-0 opacity-40">
-          <div className="mx-auto grid h-full max-w-7xl grid-cols-6 px-4 sm:px-6 md:px-10">
+          <div className="grid h-full w-full grid-cols-6 px-0">
             {Array.from({ length: 6 }).map((_, i) => (
               <div key={i} className="relative border-l border-white/5 last:border-r">
                 <div
@@ -839,8 +850,10 @@ export default function AnimeJsPortfolioSite() {
           </div>
         </div>
 
-        <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 md:px-10">
-          <div className="animate-[fadeUp_700ms_ease-out_forwards] text-sm font-medium tracking-[0.25em] text-white/70">SAMED BIRELLI</div>
+        <header className="relative z-10 mx-auto flex max-w-[1440px] items-center justify-between px-4 py-4 sm:px-6 md:px-10">
+          <div className="animate-[fadeUp_700ms_ease-out_forwards] text-sm font-medium tracking-[0.25em] text-white/70">
+            SAMED BIRELLI
+          </div>
           <nav className="hidden items-center gap-6 text-sm text-white/70 md:flex">
             {["About", "Projects", "Playground", "Skills", "Contact"].map((item, index) => (
               <a
@@ -855,18 +868,20 @@ export default function AnimeJsPortfolioSite() {
           </nav>
         </header>
 
-        <section className="relative z-10 mx-auto grid max-w-7xl gap-8 px-4 pb-10 pt-2 sm:px-6 md:min-h-[92vh] md:grid-cols-[1.15fr_0.85fr] md:items-center md:gap-14 md:px-10 md:pb-28 md:pt-16">
+        <section className="relative z-10 mx-auto grid max-w-[1440px] gap-8 px-4 pb-10 pt-2 sm:px-6 md:min-h-[86vh] md:grid-cols-[1.02fr_0.98fr] md:items-center md:gap-10 md:px-10 md:pb-20 md:pt-10">
           <div className="pt-0">
             <div className="inline-flex animate-[fadeUp_800ms_ease-out_forwards] items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-200 opacity-0 backdrop-blur-xl">
               <SparklesIcon className="h-4 w-4" />
               
             </div>
 
-            <div className="mt-5 space-y-2 text-[42px] font-semibold leading-[0.95] tracking-tight sm:text-5xl md:text-7xl">
+            <div className="mt-5 max-w-[820px] space-y-2 text-[42px] font-semibold leading-[0.95] tracking-tight sm:text-5xl md:text-[78px]">
               {["I build", "fast, sharp,", "modern digital systems."].map((line, index) => (
                 <div
                   key={line}
-                  className={`animate-[fadeUp_900ms_ease-out_forwards] opacity-0 ${index === 1 ? "bg-gradient-to-r from-white via-cyan-200 to-fuchsia-300 bg-clip-text text-transparent" : ""}`}
+                  className={`animate-[fadeUp_900ms_ease-out_forwards] opacity-0 ${
+                    index === 1 ? "bg-gradient-to-r from-white via-cyan-200 to-fuchsia-300 bg-clip-text text-transparent" : ""
+                  }`}
                   style={{ animationDelay: `${160 + index * 120}ms` }}
                 >
                   {line}
@@ -874,20 +889,32 @@ export default function AnimeJsPortfolioSite() {
               ))}
             </div>
 
-            <p className="mt-5 max-w-2xl animate-[fadeUp_900ms_ease-out_forwards] text-[15px] leading-7 text-white/68 opacity-0 sm:text-base sm:leading-8 md:text-lg" style={{ animationDelay: "520ms" }}>
+            <p
+              className="mt-5 max-w-[760px] animate-[fadeUp_900ms_ease-out_forwards] text-[15px] leading-7 text-white/68 opacity-0 sm:text-base sm:leading-8 md:text-[18px]"
+              style={{ animationDelay: "520ms" }}
+            >
               I build Telegram bots, mini apps, mobile apps and automation systems that are fast, clean and built to solve real problems. I care about both how a product works and how it feels when people use it.
             </p>
 
-            <div className="mt-6 flex animate-[fadeUp_900ms_ease-out_forwards] flex-col gap-3 opacity-0 sm:flex-row sm:gap-4" style={{ animationDelay: "650ms" }}>
-              <a href="#projects" className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-6 py-3 text-sm font-medium text-black transition hover:scale-[1.02]">
+            <div
+              className="mt-6 flex animate-[fadeUp_900ms_ease-out_forwards] flex-col gap-3 opacity-0 sm:flex-row sm:gap-4"
+              style={{ animationDelay: "650ms" }}
+            >
+              <a
+                href="#projects"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-6 py-3 text-sm font-medium text-black transition hover:scale-[1.02]"
+              >
                 View Projects <ArrowRightIcon className="h-4 w-4" />
               </a>
-              <a href="#contact" className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-white backdrop-blur-xl transition hover:bg-white/10">
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-white backdrop-blur-xl transition hover:bg-white/10"
+              >
                 Let’s Work Together
               </a>
             </div>
 
-            <div className="mt-8 grid gap-3 sm:mt-10 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-8 grid max-w-[760px] gap-3 sm:mt-10 sm:gap-4 sm:grid-cols-3">
               {[
                 ["20+", "Delivered Systems"],
                 ["Fast", "Execution Focus"],
@@ -905,28 +932,11 @@ export default function AnimeJsPortfolioSite() {
             </div>
           </div>
 
-          <div className="relative">
-            <div className="absolute -left-2 top-8 hidden rounded-3xl border border-white/10 bg-white/10 p-4 shadow-2xl backdrop-blur-2xl md:block" style={{ animation: "floatSoft 2400ms ease-in-out infinite" }}>
-              <div className="flex items-center gap-3">
-                <div className="rounded-2xl bg-cyan-400/15 p-3 text-cyan-200"><BotIcon className="h-5 w-5" /></div>
-                <div>
-                  <p className="text-sm font-medium">Telegram Systems</p>
-                  <p className="text-xs text-white/55">Bots, flows, panels</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="absolute -right-2 bottom-10 hidden rounded-3xl border border-white/10 bg-white/10 p-4 shadow-2xl backdrop-blur-2xl md:block" style={{ animation: "floatSoft 2800ms ease-in-out infinite 250ms" }}>
-              <div className="flex items-center gap-3">
-                <div className="rounded-2xl bg-fuchsia-400/15 p-3 text-fuchsia-200"><BlocksIcon className="h-5 w-5" /></div>
-                <div>
-                  <p className="text-sm font-medium">Mini App UX</p>
-                  <p className="text-xs text-white/55">Fast and immersive</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="rounded-[1.6rem] border border-white/10 bg-white/5 p-4 shadow-[0_0_80px_rgba(0,0,0,0.35)] backdrop-blur-2xl animate-[fadeUp_900ms_ease-out_forwards] opacity-0 sm:rounded-[2rem]" style={{ animationDelay: "420ms" }}>
+          <div className="relative md:pl-4">
+            <div
+              className="mx-auto max-w-[560px] rounded-[1.6rem] border border-white/10 bg-white/5 p-4 shadow-[0_0_80px_rgba(0,0,0,0.25)] backdrop-blur-2xl animate-[fadeUp_900ms_ease-out_forwards] opacity-0 sm:rounded-[2rem] md:max-w-[620px]"
+              style={{ animationDelay: "420ms" }}
+            >
               <div className="rounded-[1.4rem] border border-white/10 bg-[#0a1023] p-4 md:p-6">
                 <div className="mb-4 flex items-center justify-between">
                   <div>
@@ -958,7 +968,7 @@ export default function AnimeJsPortfolioSite() {
         </section>
       </div>
 
-      <main className="relative z-10 mx-auto max-w-7xl space-y-12 px-3 py-8 sm:px-6 md:space-y-24 md:px-10 md:py-14">
+      <main className="relative z-10 mx-auto max-w-[1440px] space-y-12 px-3 py-8 sm:px-6 md:space-y-24 md:px-10 md:py-14">
         <section className="space-y-5 sm:space-y-6">
           <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
             <div>
@@ -987,7 +997,9 @@ export default function AnimeJsPortfolioSite() {
               title="A premium feel with real build capability"
               text="I work across automation, web, mobile and robotics-focused development, then shape everything into something that feels modern, reliable and premium from the first interaction."
             />
-            <div className="opacity-95"><TerminalPanel /></div>
+            <div className="opacity-95">
+              <TerminalPanel />
+            </div>
           </div>
 
           <div className="rounded-[1.5rem] border border-white/10 bg-gradient-to-br from-cyan-400/10 via-white/[0.03] to-fuchsia-400/10 p-4 backdrop-blur-2xl sm:p-6 md:rounded-[2rem] md:p-10">
@@ -1135,7 +1147,12 @@ export default function AnimeJsPortfolioSite() {
 
           <div className="space-y-3">
             {faqItems.map((item, index) => (
-              <FaqItem key={item.question} item={item} isOpen={openFaq === index} onToggle={() => setOpenFaq(openFaq === index ? -1 : index)} />
+              <FaqItem
+                key={item.question}
+                item={item}
+                isOpen={openFaq === index}
+                onToggle={() => setOpenFaq(openFaq === index ? -1 : index)}
+              />
             ))}
           </div>
         </section>
@@ -1148,17 +1165,30 @@ export default function AnimeJsPortfolioSite() {
                   <SparklesIcon className="h-3.5 w-3.5" />
                   Contact
                 </p>
-                <h2 className="mt-5 text-2xl font-semibold tracking-tight sm:text-3xl md:text-5xl">Have an idea? Let’s turn it into something real.</h2>
+                <h2 className="mt-5 text-2xl font-semibold tracking-tight sm:text-3xl md:text-5xl">
+                  Have an idea? Let’s turn it into something real.
+                </h2>
                 <p className="mt-4 max-w-2xl text-base leading-8 text-white/65">
                   Whether it is a Telegram bot, a mini app, a mobile application or a business automation system, I can help turn it into something polished, usable and ready to launch.
                 </p>
               </div>
 
               <div className="flex flex-wrap gap-3">
-                <a href="https://t.me/samedbrll" target="_blank" rel="noreferrer" aria-label="Telegram" className="rounded-2xl border border-white/10 bg-white/5 p-3 text-white/75 transition hover:bg-white/10">
+                <a
+                  href="https://t.me/samedbrll"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Telegram"
+                  className="rounded-2xl border border-white/10 bg-white/5 p-3 text-white/75 transition hover:bg-white/10"
+                >
                   <ChatIcon className="h-5 w-5" />
                 </a>
-                <button type="button" onClick={() => setIsContactOpen(true)} aria-label="Open contact form" className="rounded-2xl border border-white/10 bg-white/5 p-3 text-white/75 transition hover:bg-white/10">
+                <button
+                  type="button"
+                  onClick={() => setIsContactOpen(true)}
+                  aria-label="Open contact form"
+                  className="rounded-2xl border border-white/10 bg-white/5 p-3 text-white/75 transition hover:bg-white/10"
+                >
                   <MailIcon className="h-5 w-5" />
                 </button>
               </div>
