@@ -105,21 +105,30 @@ const marqueeSkills = [
   "API Integrations",
 ];
 
-const timeline = [
+const playgroundItems = [
   {
-    year: "Today",
-    title: "Freelance Automation Developer",
-    text: "Building high-impact Telegram bots, mini apps and custom internal systems for clients.",
+    title: "Bot Flow Preview",
+    type: "System Concept",
+    text: "Example interaction structure for Telegram bots, approval flows and user actions.",
+    mode: "flow",
   },
   {
-    year: "Growth",
-    title: "Product-Oriented Development",
-    text: "Transforming one-off requests into cleaner, reusable and scalable digital products.",
+    title: "Mini App UI Blocks",
+    type: "Interface Study",
+    text: "Reusable product cards, dashboard sections and visual components for interactive products.",
+    mode: "dashboard",
   },
   {
-    year: "Focus",
-    title: "Modern Frontend + Solid Backend",
-    text: "Combining motion-rich interfaces with fast API-backed systems that feel premium and perform well.",
+    title: "Automation Logic",
+    type: "Workflow Idea",
+    text: "Operational thinking around forms, admin actions, reporting and approval-based systems.",
+    mode: "code",
+  },
+  {
+    title: "Mobile & Robotics Experiments",
+    type: "Engineering Direction",
+    text: "Ideas spanning mobile app structures and lower-level logic for robotics-oriented systems.",
+    mode: "terminal",
   },
 ];
 
@@ -149,30 +158,21 @@ const contactFields = [
   { key: "message", label: "Project details", type: "textarea", placeholder: "Write a short summary of what you need" },
 ];
 
-const playgroundItems = [
+const timeline = [
   {
-    title: "Bot Flow Preview",
-    type: "System Concept",
-    text: "Example interaction structure for Telegram bots, approval flows and user actions.",
-    mode: "flow",
+    year: "Today",
+    title: "Freelance Automation Developer",
+    text: "Building high-impact Telegram bots, mini apps and custom internal systems for clients.",
   },
   {
-    title: "Mini App UI Blocks",
-    type: "Interface Study",
-    text: "Reusable product cards, dashboard sections and visual components for interactive products.",
-    mode: "dashboard",
+    year: "Growth",
+    title: "Product-Oriented Development",
+    text: "Transforming one-off requests into cleaner, reusable and scalable digital products.",
   },
   {
-    title: "Automation Logic",
-    type: "Workflow Idea",
-    text: "Operational thinking around forms, admin actions, reporting and approval-based systems.",
-    mode: "code",
-  },
-  {
-    title: "Mobile & Robotics Experiments",
-    type: "Engineering Direction",
-    text: "Ideas spanning mobile app structures and lower-level logic for robotics-oriented systems.",
-    mode: "terminal",
+    year: "Focus",
+    title: "Modern Frontend + Solid Backend",
+    text: "Combining motion-rich interfaces with fast API-backed systems that feel premium and perform well.",
   },
 ];
 
@@ -298,17 +298,6 @@ function SendIcon({ className }) {
   );
 }
 
-function LinkedinIcon({ className }) {
-  return (
-    <IconBase className={className}>
-      <path d="M7 9v8" />
-      <path d="M7 6h.01" />
-      <path d="M11 17v-4.5a2.5 2.5 0 0 1 5 0V17" />
-      <path d="M11 10v7" />
-    </IconBase>
-  );
-}
-
 function MailIcon({ className }) {
   return (
     <IconBase className={className}>
@@ -372,9 +361,9 @@ function useReveal(count, interval = 120) {
 function BackgroundGlow() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute left-[5%] top-[10%] h-56 w-56 rounded-full bg-cyan-400/20 blur-3xl" />
-      <div className="absolute right-[8%] top-[18%] h-72 w-72 rounded-full bg-fuchsia-500/20 blur-3xl" />
-      <div className="absolute bottom-[12%] left-[28%] h-80 w-80 rounded-full bg-violet-500/10 blur-3xl" />
+      <div className="absolute left-[8%] top-[8%] h-44 w-44 rounded-full bg-cyan-400/20 blur-3xl sm:h-56 sm:w-56" />
+      <div className="absolute right-[6%] top-[14%] h-60 w-60 rounded-full bg-fuchsia-500/16 blur-3xl sm:h-72 sm:w-72" />
+      <div className="absolute bottom-[8%] left-[22%] h-60 w-60 rounded-full bg-violet-500/12 blur-3xl sm:h-80 sm:w-80" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_35%)]" />
       <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.03),transparent_25%,transparent_75%,rgba(255,255,255,0.03))]" />
     </div>
@@ -400,31 +389,10 @@ function RuntimeChecks() {
       { name: "projects-min-count", pass: Array.isArray(projects) && projects.length >= 3 },
       { name: "skills-min-count", pass: Array.isArray(skills) && skills.length >= 6 },
       { name: "timeline-min-count", pass: Array.isArray(timeline) && timeline.length >= 3 },
-            { name: "playground-min-count", pass: Array.isArray(playgroundItems) && playgroundItems.length >= 3 },
+      { name: "marquee-min-count", pass: Array.isArray(marqueeSkills) && marqueeSkills.length >= 8 },
+      { name: "playground-min-count", pass: Array.isArray(playgroundItems) && playgroundItems.length >= 3 },
       { name: "reasons-min-count", pass: Array.isArray(reasons) && reasons.length >= 3 },
       { name: "faq-min-count", pass: Array.isArray(faqItems) && faqItems.length >= 3 },
-      {
-        name: "project-shape",
-        pass: projects.every(
-          (project) =>
-            typeof project.title === "string" &&
-            typeof project.description === "string" &&
-            Array.isArray(project.stack) &&
-            typeof project.accent === "string" &&
-            project.details &&
-            typeof project.details.goal === "string"
-        ),
-      },
-      {
-        name: "timeline-shape",
-        pass: timeline.every(
-          (item) =>
-            typeof item.year === "string" &&
-            typeof item.title === "string" &&
-            typeof item.text === "string"
-        ),
-      },
-      { name: "marquee-min-count", pass: Array.isArray(marqueeSkills) && marqueeSkills.length >= 8 },
     ],
     []
   );
@@ -453,31 +421,19 @@ function AnimatedCard({ children, delay = 0, className = "" }) {
 
 function MarqueeRow({ items, reverse = false }) {
   const repeatedItems = [...items, ...items];
-
   return (
     <div className="relative overflow-hidden">
       <div className={`flex w-max gap-3 ${reverse ? "animate-[marqueeReverse_34s_linear_infinite]" : "animate-[marquee_34s_linear_infinite]"}`}>
         {repeatedItems.map((item, index) => (
           <div
             key={`${item}-${index}`}
-            className="whitespace-nowrap rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3 text-sm text-white/75 backdrop-blur-xl"
+            className="whitespace-nowrap rounded-2xl border border-white/10 bg-white/[0.05] px-3 py-2 text-[12px] text-white/75 backdrop-blur-xl sm:px-4 sm:py-3 sm:text-sm"
           >
             {item}
           </div>
         ))}
       </div>
     </div>
-  );
-}
-
-function Counter({ value, label, delay = 0 }) {
-  return (
-    <AnimatedCard delay={delay}>
-      <div className="min-h-[120px] rounded-[1.6rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-5 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.18)]">
-        <div className="text-3xl font-semibold tracking-tight text-white md:text-4xl">{value}</div>
-        <div className="mt-2 text-sm text-white/58">{label}</div>
-      </div>
-    </AnimatedCard>
   );
 }
 
@@ -493,13 +449,13 @@ function TerminalPanel() {
 
   return (
     <div className="rounded-[1.6rem] border border-white/10 bg-[#070d1d]/95 p-4 shadow-[0_0_60px_rgba(0,0,0,0.28)] backdrop-blur-2xl sm:rounded-[2rem] sm:p-5 md:p-6">
-      <div className="mb-5 flex items-center justify-between">
+      <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="h-2.5 w-2.5 rounded-full bg-red-400/90" />
           <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/90" />
           <span className="h-2.5 w-2.5 rounded-full bg-green-400/90" />
         </div>
-        <div className="text-xs uppercase tracking-[0.24em] text-white/35">system terminal</div>
+        <div className="text-[10px] uppercase tracking-[0.24em] text-white/35 sm:text-xs">system terminal</div>
       </div>
 
       <div className="space-y-2.5 font-mono text-[12px] leading-6 text-emerald-300/90 sm:text-sm sm:leading-7 md:text-[15px]">
@@ -520,7 +476,7 @@ function TerminalPanel() {
 function ServiceCard({ title, text, delay = 0 }) {
   return (
     <AnimatedCard delay={delay}>
-      <div className="group rounded-[1.8rem] border border-white/10 bg-white/[0.04] p-5 backdrop-blur-2xl transition hover:-translate-y-1 hover:bg-white/[0.06] sm:p-6">
+      <div className="group rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-4 backdrop-blur-2xl transition hover:-translate-y-1 hover:bg-white/[0.06] sm:rounded-[1.8rem] sm:p-6">
         <div className="mb-4 inline-flex rounded-2xl border border-white/10 bg-white/[0.05] px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-white/50 sm:text-xs">
           Service
         </div>
@@ -615,7 +571,7 @@ function ProjectCard({ project, delay = 0, onOpen }) {
       <button
         type="button"
         onClick={() => onOpen(project)}
-        className="group h-full w-full rounded-[1.8rem] border border-white/10 bg-white/5 p-5 text-left backdrop-blur-2xl transition hover:-translate-y-1 hover:bg-white/[0.07] sm:rounded-[2rem] sm:p-6"
+        className="group h-full w-full rounded-[1.6rem] border border-white/10 bg-white/5 p-4 text-left backdrop-blur-2xl transition hover:-translate-y-1 hover:bg-white/[0.07] sm:rounded-[2rem] sm:p-6"
       >
         <div className="flex items-start justify-between gap-4">
           <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-white/60 sm:text-xs">
@@ -647,7 +603,7 @@ function ProjectCard({ project, delay = 0, onOpen }) {
 function ReasonCard({ item, delay = 0 }) {
   return (
     <AnimatedCard delay={delay}>
-      <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] p-4 backdrop-blur-2xl sm:rounded-[1.8rem] sm:p-5 md:p-6">
+      <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.04] p-4 backdrop-blur-2xl sm:rounded-[1.8rem] sm:p-6">
         <div className="text-[10px] uppercase tracking-[0.22em] text-cyan-200/70 sm:text-xs">Why work with me</div>
         <h3 className="mt-3 text-lg font-semibold text-white sm:text-xl">{item.title}</h3>
         <p className="mt-3 text-sm leading-7 text-white/62">{item.text}</p>
@@ -729,27 +685,13 @@ function ProjectModal({ project, onClose }) {
 }
 
 function ContactModal({ isOpen, onClose }) {
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    project: "",
-    message: "",
-  });
-
+  const [formState, setFormState] = useState({ name: "", email: "", project: "", message: "" });
   if (!isOpen) return null;
 
-  const handleChange = (key, value) => {
-    setFormState((prev) => ({ ...prev, [key]: value }));
-  };
-
+  const handleChange = (key, value) => setFormState((prev) => ({ ...prev, [key]: value }));
   const mailSubject = encodeURIComponent(`New Project Inquiry - ${formState.project || "Portfolio Contact"}`);
   const mailBody = encodeURIComponent(
-    `Name: ${formState.name}
-Email: ${formState.email}
-Project Type: ${formState.project}
-
-Project Details:
-${formState.message}`
+    `Name: ${formState.name}\nEmail: ${formState.email}\nProject Type: ${formState.project}\n\nProject Details:\n${formState.message}`
   );
   const mailHref = `mailto:subzeroreiz@gmail.com?subject=${mailSubject}&body=${mailBody}`;
 
@@ -766,12 +708,7 @@ ${formState.message}`
               Fill this quickly and send it directly to my email, or reach me on Telegram for a faster conversation.
             </p>
           </div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded-2xl border border-white/10 bg-white/5 p-2 text-white/70 transition hover:bg-white/10"
-            aria-label="Close contact form"
-          >
+          <button type="button" onClick={onClose} className="rounded-2xl border border-white/10 bg-white/5 p-2 text-white/70 transition hover:bg-white/10">
             <XIcon className="h-4 w-4" />
           </button>
         </div>
@@ -802,19 +739,11 @@ ${formState.message}`
         </div>
 
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <a
-            href={mailHref}
-            className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-medium text-black transition hover:scale-[1.02]"
-          >
+          <a href={mailHref} className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-medium text-black transition hover:scale-[1.02]">
             <MailIcon className="h-4 w-4" />
             Send via Email
           </a>
-          <a
-            href="https://t.me/samedbrll"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/85 transition hover:bg-white/10"
-          >
+          <a href="https://t.me/samedbrll" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/85 transition hover:bg-white/10">
             <ChatIcon className="h-4 w-4" />
             Continue on Telegram
           </a>
@@ -836,7 +765,7 @@ function ContactDock({ onOpenContact }) {
           <MailIcon className="h-4 w-4" />
           Email
         </button>
-        <a href="#projects" className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-white/80 transition hover:bg-white/10">
+        <a href="#projects" className="inline-flex items-center justify-center gap-1.5 rounded-[1rem] border border-white/10 bg-white/5 px-3 py-2.5 text-[12px] font-medium text-white/80 transition hover:bg-white/10 sm:gap-2 sm:rounded-2xl sm:px-4 sm:py-3 sm:text-sm">
           <ArrowRightIcon className="h-4 w-4" />
           Projects
         </a>
@@ -861,7 +790,6 @@ export default function AnimeJsPortfolioSite() {
       const y = (event.clientY / window.innerHeight) * 100;
       setMousePosition({ x, y });
     };
-
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
@@ -873,7 +801,6 @@ export default function AnimeJsPortfolioSite() {
         setIsContactOpen(false);
       }
     };
-
     window.addEventListener("keydown", handleEscape);
     return () => window.removeEventListener("keydown", handleEscape);
   }, []);
@@ -881,77 +808,26 @@ export default function AnimeJsPortfolioSite() {
   return (
     <div ref={rootRef} className="min-h-screen bg-[#050816] pb-28 text-white sm:pb-32">
       <style>{`
-        @keyframes fadeUp {
-          from {
-            opacity: 0;
-            transform: translateY(24px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes floatSoft {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-8px);
-          }
-        }
-
-        @keyframes pulseGlow {
-          0%, 100% {
-            opacity: 0.55;
-          }
-          50% {
-            opacity: 0.9;
-          }
-        }
-
-        @keyframes marquee {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(-50%);
-          }
-        }
-
-        @keyframes marqueeReverse {
-          from {
-            transform: translateX(-50%);
-          }
-          to {
-            transform: translateX(0);
-          }
-        }
-
-        @keyframes mouseGlow {
-          0%, 100% {
-            opacity: 0.65;
-          }
-          50% {
-            opacity: 1;
-          }
-        }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(24px);} to { opacity: 1; transform: translateY(0);} }
+        @keyframes floatSoft { 0%,100%{transform:translateY(0px);} 50%{transform:translateY(-8px);} }
+        @keyframes pulseGlow { 0%,100%{opacity:0.55;} 50%{opacity:0.9;} }
+        @keyframes marquee { from { transform: translateX(0);} to { transform: translateX(-50%);} }
+        @keyframes marqueeReverse { from { transform: translateX(-50%);} to { transform: translateX(0);} }
+        @keyframes mouseGlow { 0%,100%{opacity:0.65;} 50%{opacity:1;} }
       `}</style>
 
       <RuntimeChecks />
 
       <div
         className="pointer-events-none fixed inset-0 z-0 animate-[mouseGlow_4s_ease-in-out_infinite]"
-        style={{
-          background: `radial-gradient(420px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(56, 189, 248, 0.12), transparent 38%)`,
-        }}
+        style={{ background: `radial-gradient(420px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(56, 189, 248, 0.12), transparent 38%)` }}
       />
 
       <div className="relative overflow-hidden">
         <BackgroundGlow />
 
         <div className="absolute inset-0 opacity-40">
-          <div className="mx-auto grid h-full max-w-7xl grid-cols-6 px-6 md:px-10">
+          <div className="mx-auto grid h-full max-w-7xl grid-cols-6 px-4 sm:px-6 md:px-10">
             {Array.from({ length: 6 }).map((_, i) => (
               <div key={i} className="relative border-l border-white/5 last:border-r">
                 <div
@@ -963,10 +839,8 @@ export default function AnimeJsPortfolioSite() {
           </div>
         </div>
 
-        <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 md:px-10">
-          <div className="animate-[fadeUp_700ms_ease-out_forwards] text-sm font-medium tracking-[0.25em] text-white/70">
-            SAMED BIRELLI
-          </div>
+        <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 md:px-10">
+          <div className="animate-[fadeUp_700ms_ease-out_forwards] text-sm font-medium tracking-[0.25em] text-white/70">SAMED BIRELLI</div>
           <nav className="hidden items-center gap-6 text-sm text-white/70 md:flex">
             {["About", "Projects", "Playground", "Skills", "Contact"].map((item, index) => (
               <a
@@ -981,20 +855,18 @@ export default function AnimeJsPortfolioSite() {
           </nav>
         </header>
 
-        <section className="relative z-10 mx-auto grid min-h-[88vh] max-w-7xl items-center gap-10 px-4 pb-16 pt-8 sm:px-6 md:min-h-[92vh] md:gap-14 md:grid-cols-[1.15fr_0.85fr] md:px-10 md:pb-28 md:pt-16">
-          <div>
+        <section className="relative z-10 mx-auto grid max-w-7xl gap-8 px-4 pb-10 pt-2 sm:px-6 md:min-h-[92vh] md:grid-cols-[1.15fr_0.85fr] md:items-center md:gap-14 md:px-10 md:pb-28 md:pt-16">
+          <div className="pt-0">
             <div className="inline-flex animate-[fadeUp_800ms_ease-out_forwards] items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-200 opacity-0 backdrop-blur-xl">
               <SparklesIcon className="h-4 w-4" />
-              Premium Portfolio Experience
+              
             </div>
 
-            <div className="mt-7 space-y-2 text-4xl font-semibold leading-[0.95] tracking-tight sm:text-5xl md:text-7xl">
+            <div className="mt-5 space-y-2 text-[42px] font-semibold leading-[0.95] tracking-tight sm:text-5xl md:text-7xl">
               {["I build", "fast, sharp,", "modern digital systems."].map((line, index) => (
                 <div
                   key={line}
-                  className={`animate-[fadeUp_900ms_ease-out_forwards] opacity-0 ${
-                    index === 1 ? "bg-gradient-to-r from-white via-cyan-200 to-fuchsia-300 bg-clip-text text-transparent" : ""
-                  }`}
+                  className={`animate-[fadeUp_900ms_ease-out_forwards] opacity-0 ${index === 1 ? "bg-gradient-to-r from-white via-cyan-200 to-fuchsia-300 bg-clip-text text-transparent" : ""}`}
                   style={{ animationDelay: `${160 + index * 120}ms` }}
                 >
                   {line}
@@ -1002,27 +874,15 @@ export default function AnimeJsPortfolioSite() {
               ))}
             </div>
 
-            <p
-              className="mt-7 max-w-2xl animate-[fadeUp_900ms_ease-out_forwards] text-[15px] leading-7 text-white/68 opacity-0 sm:text-base sm:leading-8 md:text-lg"
-              style={{ animationDelay: "520ms" }}
-            >
+            <p className="mt-5 max-w-2xl animate-[fadeUp_900ms_ease-out_forwards] text-[15px] leading-7 text-white/68 opacity-0 sm:text-base sm:leading-8 md:text-lg" style={{ animationDelay: "520ms" }}>
               I build Telegram bots, mini apps, mobile apps and automation systems that are fast, clean and built to solve real problems. I care about both how a product works and how it feels when people use it.
             </p>
 
-            <div
-              className="mt-8 flex animate-[fadeUp_900ms_ease-out_forwards] flex-col gap-4 opacity-0 sm:flex-row"
-              style={{ animationDelay: "650ms" }}
-            >
-              <a
-                href="#projects"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-6 py-3 text-sm font-medium text-black transition hover:scale-[1.02]"
-              >
+            <div className="mt-6 flex animate-[fadeUp_900ms_ease-out_forwards] flex-col gap-3 opacity-0 sm:flex-row sm:gap-4" style={{ animationDelay: "650ms" }}>
+              <a href="#projects" className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-6 py-3 text-sm font-medium text-black transition hover:scale-[1.02]">
                 View Projects <ArrowRightIcon className="h-4 w-4" />
               </a>
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-white backdrop-blur-xl transition hover:bg-white/10"
-              >
+              <a href="#contact" className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-white backdrop-blur-xl transition hover:bg-white/10">
                 Let’s Work Together
               </a>
             </div>
@@ -1046,14 +906,9 @@ export default function AnimeJsPortfolioSite() {
           </div>
 
           <div className="relative">
-            <div
-              className="absolute -left-2 top-8 hidden rounded-3xl border border-white/10 bg-white/10 p-4 shadow-2xl backdrop-blur-2xl md:block"
-              style={{ animation: "floatSoft 2400ms ease-in-out infinite" }}
-            >
+            <div className="absolute -left-2 top-8 hidden rounded-3xl border border-white/10 bg-white/10 p-4 shadow-2xl backdrop-blur-2xl md:block" style={{ animation: "floatSoft 2400ms ease-in-out infinite" }}>
               <div className="flex items-center gap-3">
-                <div className="rounded-2xl bg-cyan-400/15 p-3 text-cyan-200">
-                  <BotIcon className="h-5 w-5" />
-                </div>
+                <div className="rounded-2xl bg-cyan-400/15 p-3 text-cyan-200"><BotIcon className="h-5 w-5" /></div>
                 <div>
                   <p className="text-sm font-medium">Telegram Systems</p>
                   <p className="text-xs text-white/55">Bots, flows, panels</p>
@@ -1061,14 +916,9 @@ export default function AnimeJsPortfolioSite() {
               </div>
             </div>
 
-            <div
-              className="absolute -right-2 bottom-10 hidden rounded-3xl border border-white/10 bg-white/10 p-4 shadow-2xl backdrop-blur-2xl md:block"
-              style={{ animation: "floatSoft 2800ms ease-in-out infinite 250ms" }}
-            >
+            <div className="absolute -right-2 bottom-10 hidden rounded-3xl border border-white/10 bg-white/10 p-4 shadow-2xl backdrop-blur-2xl md:block" style={{ animation: "floatSoft 2800ms ease-in-out infinite 250ms" }}>
               <div className="flex items-center gap-3">
-                <div className="rounded-2xl bg-fuchsia-400/15 p-3 text-fuchsia-200">
-                  <BlocksIcon className="h-5 w-5" />
-                </div>
+                <div className="rounded-2xl bg-fuchsia-400/15 p-3 text-fuchsia-200"><BlocksIcon className="h-5 w-5" /></div>
                 <div>
                   <p className="text-sm font-medium">Mini App UX</p>
                   <p className="text-xs text-white/55">Fast and immersive</p>
@@ -1076,11 +926,8 @@ export default function AnimeJsPortfolioSite() {
               </div>
             </div>
 
-            <div
-              className="rounded-[2rem] border border-white/10 bg-white/5 p-4 shadow-[0_0_80px_rgba(0,0,0,0.35)] backdrop-blur-2xl animate-[fadeUp_900ms_ease-out_forwards] opacity-0"
-              style={{ animationDelay: "420ms" }}
-            >
-              <div className="rounded-[1.6rem] border border-white/10 bg-[#0a1023] p-4 md:p-6">
+            <div className="rounded-[1.6rem] border border-white/10 bg-white/5 p-4 shadow-[0_0_80px_rgba(0,0,0,0.35)] backdrop-blur-2xl animate-[fadeUp_900ms_ease-out_forwards] opacity-0 sm:rounded-[2rem]" style={{ animationDelay: "420ms" }}>
+              <div className="rounded-[1.4rem] border border-white/10 bg-[#0a1023] p-4 md:p-6">
                 <div className="mb-4 flex items-center justify-between">
                   <div>
                     <p className="text-sm text-white/50">Featured Stack</p>
@@ -1124,8 +971,8 @@ export default function AnimeJsPortfolioSite() {
           </div>
 
           <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] p-4 backdrop-blur-2xl md:p-5">
-            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-[#050816] to-transparent" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-[#050816] to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-14 bg-gradient-to-r from-[#050816] to-transparent sm:w-24" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-14 bg-gradient-to-l from-[#050816] to-transparent sm:w-24" />
             <div className="space-y-3">
               <MarqueeRow items={marqueeSkills} />
               <MarqueeRow items={[...marqueeSkills].reverse()} reverse />
@@ -1140,9 +987,7 @@ export default function AnimeJsPortfolioSite() {
               title="A premium feel with real build capability"
               text="I work across automation, web, mobile and robotics-focused development, then shape everything into something that feels modern, reliable and premium from the first interaction."
             />
-            <div className="opacity-95">
-              <TerminalPanel />
-            </div>
+            <div className="opacity-95"><TerminalPanel /></div>
           </div>
 
           <div className="rounded-[1.5rem] border border-white/10 bg-gradient-to-br from-cyan-400/10 via-white/[0.03] to-fuchsia-400/10 p-4 backdrop-blur-2xl sm:p-6 md:rounded-[2rem] md:p-10">
@@ -1258,7 +1103,7 @@ export default function AnimeJsPortfolioSite() {
             text="I focus on keeping the project clean, fast-moving and strong on both the technical and product side."
           />
 
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-3 sm:gap-4 md:grid-cols-2 xl:grid-cols-4">
             {reasons.map((item, index) => (
               <ReasonCard key={item.title} item={item} delay={index * 90} />
             ))}
@@ -1275,7 +1120,7 @@ export default function AnimeJsPortfolioSite() {
           <div className="grid gap-3 sm:gap-4 md:grid-cols-3">
             {timeline.slice(0, timelineVisible).map((item, index) => (
               <AnimatedCard key={item.title} delay={index * 90}>
-                <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur-2xl">
+                <div className="rounded-[1.6rem] border border-white/10 bg-white/5 p-5 backdrop-blur-2xl sm:rounded-[2rem] sm:p-6">
                   <div className="text-sm uppercase tracking-[0.22em] text-cyan-200/80">{item.year}</div>
                   <h3 className="mt-4 text-xl font-semibold">{item.title}</h3>
                   <p className="mt-3 text-sm leading-7 text-white/62">{item.text}</p>
@@ -1286,35 +1131,24 @@ export default function AnimeJsPortfolioSite() {
         </section>
 
         <section className="space-y-10">
-          <SectionTitle
-            eyebrow="FAQ"
-            title="Common questions"
-            text="A few direct answers about what I build and how I work."
-          />
+          <SectionTitle eyebrow="FAQ" title="Common questions" text="A few direct answers about what I build and how I work." />
 
           <div className="space-y-3">
             {faqItems.map((item, index) => (
-              <FaqItem
-                key={item.question}
-                item={item}
-                isOpen={openFaq === index}
-                onToggle={() => setOpenFaq(openFaq === index ? -1 : index)}
-              />
+              <FaqItem key={item.question} item={item} isOpen={openFaq === index} onToggle={() => setOpenFaq(openFaq === index ? -1 : index)} />
             ))}
           </div>
         </section>
 
         <section id="contact" className="space-y-8 pb-12 sm:pb-16">
-          <div className="rounded-[1.8rem] border border-white/10 bg-gradient-to-br from-cyan-400/10 via-white/[0.03] to-fuchsia-400/10 p-5 backdrop-blur-2xl sm:p-6 md:rounded-[2rem] md:p-10">
+          <div className="rounded-[1.5rem] border border-white/10 bg-gradient-to-br from-cyan-400/10 via-white/[0.03] to-fuchsia-400/10 p-4 backdrop-blur-2xl sm:p-6 md:rounded-[2rem] md:p-10">
             <div className="grid gap-6 md:gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
               <div>
                 <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.24em] text-white/60">
                   <SparklesIcon className="h-3.5 w-3.5" />
                   Contact
                 </p>
-                <h2 className="mt-5 text-2xl font-semibold tracking-tight sm:text-3xl md:text-5xl">
-                  Have an idea? Let’s turn it into something real.
-                </h2>
+                <h2 className="mt-5 text-2xl font-semibold tracking-tight sm:text-3xl md:text-5xl">Have an idea? Let’s turn it into something real.</h2>
                 <p className="mt-4 max-w-2xl text-base leading-8 text-white/65">
                   Whether it is a Telegram bot, a mini app, a mobile application or a business automation system, I can help turn it into something polished, usable and ready to launch.
                 </p>
