@@ -120,11 +120,11 @@ document.addEventListener('click',e=>{const app=e.target.closest('[data-app]');i
 })();
 
 
-function openNisos(){
- const existing=document.getElementById('win-nisos');if(existing){existing.hidden=false;existing.style.zIndex=++topZ;return}
+function openNisosAlbum(){
+ const existing=document.getElementById('win-nisos-album');if(existing){existing.hidden=false;existing.style.zIndex=++topZ;return}
  const panel=document.createElement('article');panel.className='constellation sky-lock';
  panel.innerHTML='<header class="sky-heading"><span>SADECE İKİMİZE</span><h2>Bizim gökyüzümüz</h2><p>Bazı yıldızları yalnızca biz görebiliriz.</p></header><form class="sky-unlock"><label for="sky-password">Gökyüzünün anahtarı</label><input id="sky-password" type="password" autocomplete="off" required maxlength="256" placeholder="Özel parolanı gir"><button class="primary" type="submit">Yıldızları aç ✧</button><p class="unlock-status" role="status"></p></form><p class="sky-hint">Parola bu cihazda kaydedilmez.<br>Pencereyi kapatınca gökyüzü yeniden kilitlenir.</p>';
- names.nisos='Nisoş ♥ — kilitli gökyüzü';const w=openApp('nisos',panel);w.classList.add('sky-window');
+ names['nisos-album']='Nisoş ♥ — kilitli gökyüzü';const w=openApp('nisos-album',panel);w.classList.add('sky-window');
  const form=panel.querySelector('form'),input=panel.querySelector('input'),button=form.querySelector('button'),status=form.querySelector('.unlock-status');let urls=[];
  const dispose=()=>{urls.forEach(url=>URL.revokeObjectURL(url));urls=[];input.value=''};
  const observer=new MutationObserver(()=>{if(!w.isConnected){dispose();observer.disconnect()}});observer.observe(area,{childList:true});
@@ -142,7 +142,7 @@ function openNisos(){
   const album=JSON.parse(new TextDecoder().decode(raw));if(!Array.isArray(album.photos)||album.photos.length!==4)throw new Error('network');
   if(!w.isConnected)return;
   urls=album.photos.map(photo=>URL.createObjectURL(new Blob([bytes(photo)],{type:'image/jpeg'})));
-  showNisosSky(w,urls);const lock=document.createElement('button');lock.className='sky-relock';lock.textContent='Gökyüzünü kilitle ↗';lock.onclick=()=>{dispose();w.remove();indicators();openNisos()};w.querySelector('.constellation').append(lock);
+  showNisosSky(w,urls);const lock=document.createElement('button');lock.className='sky-relock';lock.textContent='Gökyüzünü kilitle ↗';lock.onclick=()=>{dispose();w.remove();indicators();openNisosAlbum()};w.querySelector('.constellation').append(lock);
  }catch(error){password='';if(w.isConnected){status.textContent=error.name==='OperationError'?'Bu anahtar gökyüzünü açmadı. Tekrar dene.':error.message==='unsupported'?'Bu tarayıcı şifreli albümü desteklemiyor. Güncel bir tarayıcıda HTTPS üzerinden aç.':'Albüm yüklenemedi. Bağlantını kontrol edip tekrar dene.';button.disabled=false;input.focus()}}
  };
 }
@@ -164,4 +164,12 @@ function showNisosSky(w,photoUrls){
  card.querySelector('.memory-close').onclick=close;card.querySelector('.memory-prev').onclick=()=>select(selected-1,false);card.querySelector('.memory-next').onclick=()=>select(selected+1,false);
  card.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();close()}else if(e.key==='ArrowRight'){e.preventDefault();select(selected+1,false)}else if(e.key==='ArrowLeft'){e.preventDefault();select(selected-1,false)}});
  w.querySelector('.window-content').replaceChildren(note);w.querySelector('.titlebar>span').textContent='Nisoş ♥ — bizim gökyüzümüz';
+}
+
+function openNisos(){
+ const existing=document.getElementById('win-nisos');if(existing){existing.hidden=false;existing.style.zIndex=++topZ;return}
+ const note=document.createElement('article');note.className='article love-note';
+ note.innerHTML='<div class="eyebrow">SADECE SANA / NİSOŞ</div><div class="love-heart" aria-hidden="true">♥</div><h2>İyi ki sen.</h2><p>Bu bilgisayarda bir sürü proje var.<br>Ama en güzel hikâyem sensin.</p><p class="love-signature">Sana ayırdığım yer hep başka. ♥<br><span>— Samed</span></p><div class="love-secret">Bu küçük köşeyi bulduysan, gülümse.<br>Burası senin.</div><button class="primary sky-entry">Bizim gökyüzümüz ✨</button>';
+ note.querySelector('.sky-entry').onclick=openNisosAlbum;
+ names.nisos='Nisoş ♥ — özel bir mesaj';openApp('nisos',note);
 }
