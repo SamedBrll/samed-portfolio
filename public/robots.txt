@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /private-sky/
+Sitemap: https://www.samedbrll.com/sitemap.xml
